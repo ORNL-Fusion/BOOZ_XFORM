@@ -7,3 +7,5 @@ add_executable (xbooz_xform)
 target_link_libraries (xbooz_xform PUBLIC stell)
 
 add_subdirectory (Sources)
+
+install (TARGETS xbooz_xform)
