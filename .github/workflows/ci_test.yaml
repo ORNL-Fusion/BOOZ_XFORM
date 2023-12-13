@@ -61,7 +61,7 @@ jobs:
               working-directory: ${{runner.workspace}}/Stellarator-Tools/build
               run: make test ARGS=-j3
             - name: Test Linux
-              if: ${{matrix.os == 'macos-latest'}}
+              if: ${{matrix.os == 'ubuntu-latest'}}
               shell: bash
               working-directory: ${{runner.workspace}}/Stellarator-Tools/build
               run: make test ARGS=-j2
