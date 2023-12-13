@@ -175,7 +175,7 @@ C-----------------------------------------------
 !     SPH 070909: ADDED lasym to dump
 !     CRCook 10/8/12: ADDED lrfp to dump
       WRITE (iunit, iostat=istat, err=100) mboz, nboz, mnboz, jsize
-      WRITE (iunit, iostat=istat, err=100) version, lasym, lrfp_b
+      WRITE (iunit, iostat=istat, err=100) version, lasym_b, lrfp_b
 
       WRITE (iunit, iostat=istat, err=100) NINT(xnb(:mnboz)), 
      1                                     NINT(xmb(:mnboz))
@@ -191,7 +191,7 @@ C-----------------------------------------------
      1       rmncb(:mnboz,i), zmnsb(:mnboz,i), pmnsb(:mnboz,i),
      2       gmncb(:mnboz,i)
 !SPH070909: WRITE OUT ASYMMETRIC PARTS
-        IF (lasym) THEN
+        IF (lasym_b) THEN
         WRITE (iunit, iostat=istat, err=100) bmncb(:mnboz,i),
      1       rmnsb(:mnboz,i), zmncb(:mnboz,i), pmncb(:mnboz,i),
      2       gmnsb(:mnboz,i)
