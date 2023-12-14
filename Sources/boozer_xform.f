@@ -5,7 +5,7 @@
 C-----------------------------------------------
 C   L o c a l   V a r i a b l e s
 C-----------------------------------------------
-      INTEGER :: istat, jrad, iread, numargs, jsurf
+      INTEGER :: istat, jrad, iread, numargs
       REAL(rprec) :: t1, t2
       CHARACTER(LEN=50) :: arg1, arg2
       CHARACTER(LEN=120) :: extension
@@ -32,6 +32,7 @@ C-----------------------------------------------
 !     CALL xbooz_xform -h brings up a help screen
 !
       lscreen = .true.          !!Default, write to screen
+      far = .false.             !!Default, don't calculate metric elements
 
 !
 !     Read command line argument to get input file name
@@ -55,7 +56,8 @@ C-----------------------------------------------
          PRINT *,' where F suppresses output to the screen'
          STOP
       ELSE IF (numargs .gt. 1) THEN
-         IF (arg2(1:1).eq.'f' .or. arg2(1:1).eq.'F') lscreen = .false.
+         IF (TRIM(arg2).eq.'f' .or. TRIM(arg2).eq.'F') lscreen = .false.
+         IF (TRIM(arg2).eq.'far' .or. TRIM(arg2).eq.'FAR') far = .true.
       ENDIF
 
       iread = unit_booz-1
@@ -87,14 +89,12 @@ C-----------------------------------------------
 
 ! CRCook for debugging purposes
       OPEN(UNIT = 16, FILE = 'sum_gmncb.txt')
-      jsurf=0
-      DO jrad = 1, ns
-        IF (lsurf_boz(jrad)) THEN
-           jsurf=jsurf+1
-           WRITE(16,*) jrad, SUM(gmncb(:,jsurf))
-        END IF
+      DO jrad = 1, jsize
+        WRITE(16,*) jrad, SUM(gmncb(:,jrad))
       ENDDO
       CLOSE(16)
+
+      IF (far) call boozer_metric
 
 ! CRCook if LRFP = T, compute chip and chi
       IF (lrfp_b) THEN

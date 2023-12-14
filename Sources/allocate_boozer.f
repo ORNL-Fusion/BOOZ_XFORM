@@ -21,6 +21,7 @@ c-----------------------------------------------
       jlist = 0
       i = 1
       READ (iread, '(a)', iostat=istat1) temp
+      IF (far) istat1=1  ! All surfaces are computed for metric elements calculation
       IF (istat1 .eq. 0) THEN
          DO WHILE (istat1 .eq. 0)
             DO jrad = i, ns
@@ -47,7 +48,7 @@ c-----------------------------------------------
          END DO
 
       ELSE IF (istat1 .ne. 0) THEN 
-         WRITE(6, '(a,/,a,i4)')
+         WRITE(6, '(a,/,a,a,i4)')
      1    ' No jlist data was found in Boozer input file.',
      1    ' Will assume that all surfaces are needed.',
      1    ' Iostat: ', istat1

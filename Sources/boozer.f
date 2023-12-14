@@ -9,7 +9,7 @@ C...MODIFIED 6/98 by A. WARE to speed up by factor of 8
 C
       USE stel_kinds
 ! CRCook Need extra variables from booz_params now
-      USE booz_params, ONLY: lasym_b, lrfp_b, hiota
+      USE booz_params, ONLY: lasym_b, lrfp_b, phip, hiota
       IMPLICIT NONE
 C-----------------------------------------------
 C   D u m m y   A r g u m e n t s
@@ -70,7 +70,8 @@ C-----------------------------------------------
 !     jacobian from VMEC to Boozer coords, with SPECIAL
 !     radial variable s = (toroidal flux)/twopi (phip = 1)
 !     cost = cos(mu-nv);  sint = sin(mu-nv)
-      bbjac = jacfac/(bmod*bmod)
+      sgn = SIGN(one,phip(js))
+      bbjac = sgn*jacfac/(bmod*bmod)
 
 ! CRCook This modification makes the Jacobian the correct one for s ~ chi
 ! (LRFP = TRUE)
