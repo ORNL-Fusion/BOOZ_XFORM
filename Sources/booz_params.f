@@ -26,6 +26,6 @@ C-----------------------------------------------
       REAL(rprec), DIMENSION(:,:), ALLOCATABLE :: bsubumnc, 
      1  bsubvmnc, bsubumns, bsubvmns, bmodmnc, bmodmns 
       REAL(rprec) :: ohs
-      LOGICAL :: lscreen, lasym_b, lrfp_b=.FALSE. ! CRCook 10/8/12 need to know LRFP
+      LOGICAL :: lscreen, lasym_b, far, lrfp_b=.FALSE. ! CRCook 10/8/12 need to know LRFP
       LOGICAL, ALLOCATABLE, DIMENSION(:) :: lsurf_boz
       END MODULE booz_params
