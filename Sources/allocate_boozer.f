@@ -6,7 +6,7 @@ C-----------------------------------------------
 C   L o c a l   V a r i a b l e s
 C-----------------------------------------------
       INTEGER :: i, jrad, istat1=0, istat2=0, istat3=0, iread, index
-      CHARACTER(LEN=1000) :: temp
+      CHARACTER(LEN=2000) :: temp
       CHARACTER(LEN=10)   :: scanset='0123456789'
 c-----------------------------------------------
       IF (.not.ALLOCATED(jlist)) ALLOCATE (jlist(ns), lsurf_boz(ns), 
